@@ -1,0 +1,41 @@
+<!-- Modal Añadir Ingreso -->
+<div class="modal d-flex align-items-center justify-content-center">
+
+  <!-- Notificación de agregado con éxito -->
+  <div *ngIf="agregadoConExito" class="alert-container">
+    <div class="alert alert-success alert-dismissible fade show custom-alert" role="alert">
+      <strong>Éxito:</strong> Ingreso agregado con éxito.
+    </div>
+  </div>
+
+<div class="modal-dialog" role="document">
+<div class="modal-content modal-ingreso">
+<div class="modal-header">
+  <h2 class="modal-title">Añadir Ingreso</h2>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"(click)="cerrarModalIngreso()"></button>
+</div>
+<div class="modal-body">
+  <form name="formAddIngreso" (ngSubmit)="guardarIngreso()">
+    <div class="mb-3">
+      <label for="cantidad" class="col-form-label">Cantidad:</label>
+      <input type="number" class="form-control" name="cantidad" [(ngModel)]="formAddIngreso.cantidad">
+    </div>
+    <div class="mb-3">
+      <label for="descripcion" class="col-form-label">Descripción:</label>
+      <textarea class="form-control" name="descripcion" [(ngModel)]="formAddIngreso.descripcion"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="fecha" class="col-form-label">Fecha:</label>
+      <input type="date" class="form-control" name="fecha" [(ngModel)]="formAddIngreso.fecha">
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-addGasto" data-bs-dismiss="modal" (click)="cerrarModalIngreso()">Cancelar</button>
+  <button *ngIf="!agregadoConExito" type="button" class="btn btn-addIngreso" (click)="guardarIngreso()">Guardar</button>
+</div>
+</div>
+</div>
+</div>
+
+

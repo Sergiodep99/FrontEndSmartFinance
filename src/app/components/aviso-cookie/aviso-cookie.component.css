@@ -1,0 +1,105 @@
+/*ESTILOS VENTANA COOKIES*/
+.contenedorAvisoCookies {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #111111bd;
+  display: flex;
+  align-items: flex-end;
+}
+
+.avisoCookies {
+  display: flex;
+  background: #fff;
+  border-radius: 5px;
+  left: 20px;
+  bottom: 20px;
+  padding: 20px;
+  width: 40%;
+  max-width: 290px;
+  color: black;
+  line-height: 150%;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  padding-top: 60px;
+  box-shadow: 0px 2px 20px 10px rgba(222, 222, 222, .25);
+}
+
+.imgCookie {
+  max-width: 150px;
+  position: absolute;
+  top: -100px;
+}
+
+.tituloAvisoCookies {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.textoAvisoCookies {
+  text-align: center;
+  margin: 20px 0px;
+}
+
+.btnAceptarCookies {
+  width: 50%;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  background: #b58630f0;
+  color: #4a2c0c;
+  transition: .5s;
+  animation: fadeinoutCookies 3s linear infinite;
+  animation-delay: 1s;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+@media (max-width: 768px) {
+  .btnAceptarCookies {
+    font-size: 0.8em;
+  }
+}
+
+@keyframes fadeinoutCookies {
+  0%, 100% {
+    font-size: 1em;
+  }
+  50% {
+    font-size: 0.8em;
+  }
+}
+
+.btnAceptarCookies:hover {
+  color: #bd8b56 !important;
+  background: #6e511cf0 !important;
+  box-shadow: 0 0 20px #a8781df0 !important;
+}
+
+@keyframes fadeinoutCookies {
+
+  20%,
+  70% {
+      background: #976e20f0;
+      box-shadow: 0 0 20px #a8781df0,
+          0 0 40px #b88d3ef0;
+  }
+
+  70%,
+  100% {
+      box-shadow: none;
+  }
+}
+
+.enlaceAvisoCookies {
+  color: #0343f4;
+  text-decoration: underline;
+}
+
+.enlaceAvisoCookies:hover {
+  color: #0b2f92;
+}

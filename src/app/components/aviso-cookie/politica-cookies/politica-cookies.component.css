@@ -1,0 +1,92 @@
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background: url('../../../../assets/img/background.svg') center/cover no-repeat!important;
+  overflow-y: auto; /* Habilita el scroll vertical */
+  overflow-x: hidden; /* Deshabilita el scroll horizontal */
+  color: black;
+}
+
+.politicaCookies {
+  position: relative; /* Añade position relative para establecer z-index */
+  z-index: 999; /* Ajusta el z-index según sea necesario, asegurándote de que sea mayor que otros elementos */
+}
+
+.cabeceraPoliticas {
+  text-align: center;
+  margin: 2em;
+}
+
+.tituloPoliticas {
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  margin: 10px;
+}
+
+.contenidoPoliticas {
+  margin: 3em 10em;
+}
+
+.contenidoPoliticas p {
+  margin-bottom: 1em;
+  margin-left: 20px;
+}
+
+.contenidoPoliticas ul {
+  margin-bottom: 1em;
+  margin-left: 20px;
+}
+
+.contenidoPoliticas li {
+  margin-bottom: 0.5em;
+  margin-left: 40px;
+  list-style-type: disc;
+}
+
+.contenidoPoliticas h2 {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  font-weight: bold;
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+.contenidoPoliticas h3 {
+  margin-bottom: 0.4em;
+  margin-top: 1.5em;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/*FOOTER*/
+.footer {
+  background: #34414D;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 3.9vh;
+  border-top: 2px solid #1C1C1F;
+}
+
+.footerModoOscuro {
+  background: #71a0cc;
+}
+
+.informacionDesarrollador {
+  margin-top: 2px;
+}
+
+.rgpd {
+  display: flex;
+}
+
+.enlaceRGPD {
+  margin: 5px 30px;
+  text-decoration: underline;
+  color: #cc0000;
+}

@@ -66,6 +66,9 @@
               "browserTarget": "FrontSmartFinance:build:development"
             }
           },
+          "options": {
+            "port": 8081
+          },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
@@ -94,5 +97,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "162c3304-77c9-46a9-85d4-158473fb5dd6"
   }
 }

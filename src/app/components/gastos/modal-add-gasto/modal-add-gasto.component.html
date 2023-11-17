@@ -1,0 +1,41 @@
+<!-- Modal Añadir Gasto -->
+<div class="modal d-flex align-items-center justify-content-center">
+
+  <!-- Notificación de agregado con éxito -->
+  <div *ngIf="agregadoConExito" class="alert-container">
+    <div class="alert alert-success alert-dismissible fade show custom-alert" role="alert">
+      <strong>Éxito:</strong> Gasto agregado con éxito.
+    </div>
+  </div>
+
+<div class="modal-dialog" role="document">
+<div class="modal-content modal-gasto">
+  <div class="modal-header">
+    <h2 class="modal-title">Añadir Gasto</h2>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"(click)="cerrarModalGasto()"></button>
+  </div>
+  <div class="modal-body">
+    <form name="formAddGasto" (ngSubmit)="guardarGasto()">
+      <div class="mb-3">
+        <label for="cantidad" class="col-form-label">Cantidad:</label>
+        <input type="number" class="form-control" name="cantidad" [(ngModel)]="formAddGasto.cantidad">
+      </div>
+      <div class="mb-3">
+        <label for="descripcion" class="col-form-label">Descripción:</label>
+        <textarea class="form-control" name="descripcion" [(ngModel)]="formAddGasto.descripcion"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="fecha" class="col-form-label">Fecha:</label>
+        <input type="date" class="form-control" name="fecha" [(ngModel)]="formAddGasto.fecha">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-addGasto" data-bs-dismiss="modal" (click)="cerrarModalGasto()">Cancelar</button>
+    <button *ngIf="!agregadoConExito" type="button" class="btn btn-addIngreso" (click)="guardarGasto()">Guardar</button>
+  </div>
+</div>
+</div>
+</div>
+
+

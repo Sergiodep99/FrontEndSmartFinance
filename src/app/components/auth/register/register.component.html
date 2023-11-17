@@ -1,0 +1,114 @@
+<div class="background">
+  <div class="headerIcono">
+    <a href="#" class="brand-logo">
+      <img class="logo-abbr fa-brands fa-stumbleupon" height="200px" width="200px"
+        src="../../../../assets/img/LogoInicioSmartFinance.png" />
+    </a>
+    <div class="nav-control">
+      <div class="hamburger">
+        <span class="line"></span><span class="line"></span><span class="line"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="card card-container">
+      <img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card" />
+      <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate
+        [appMatchPassword]="['password', 'confirmPassword']">
+
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" name="nombre" [(ngModel)]="form.nombre" required minlength="3"
+            maxlength="50" #nombre="ngModel" [ngClass]="{ 'is-invalid': f.submitted && nombre.errors }" />
+          <div class="invalid-feedback" *ngIf="nombre.errors && f.submitted">
+            <div *ngIf="nombre.errors['required']">El nombre es obligatorio</div>
+            <div *ngIf="nombre.errors['minlength']">
+              El nombre tiene que tener al menos 3 caracteres.
+            </div>
+            <div *ngIf="nombre.errors['maxlength']">
+              El nombre tiene que tener menos de 50 caracteres.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="apellidos">Apellidos</label>
+          <input type="text" class="form-control" name="apellidos" [(ngModel)]="form.apellidos" required minlength="3"
+            maxlength="100" #apellidos="ngModel" [ngClass]="{ 'is-invalid': f.submitted && apellidos.errors }" />
+          <div class="invalid-feedback" *ngIf="apellidos.errors && f.submitted">
+            <div *ngIf="apellidos.errors['required']">Los apellidos son obligatorios</div>
+            <div *ngIf="apellidos.errors['minlength']">
+              El apellidos tiene que tener al menos 3 caracteres.
+            </div>
+            <div *ngIf="apellidos.errors['maxlength']">
+              El apellidos tiene que tener menos de 100 caracteres.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required email #email="ngModel"
+            [ngClass]="{ 'is-invalid': f.submitted && email.errors }" />
+          <div class="invalid-feedback" *ngIf="email.errors && f.submitted">
+            <div *ngIf="email.errors['required']">El email es obligatorio</div>
+            <div *ngIf="email.errors['email']">
+              Tiene que ser un email válido
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="8"
+            #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.errors }" />
+          <div class="invalid-feedback" *ngIf="password.errors && f.submitted">
+            <div *ngIf="password.errors['required']">La contraseña es obligatoria</div>
+            <div *ngIf="password.errors['minlength']">
+              La contraseña tiene que tener al menos 8 caracteres.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Confirmar Contraseña</label>
+          <input type="password" class="form-control" name="confirmPassword" [(ngModel)]="form.confirmPassword" required
+            #confirmPassword="ngModel" [ngClass]="{ 'is-invalid': f.submitted && confirmPassword.errors }" />
+          <div *ngIf="f.submitted && confirmPassword.errors" class="invalid-feedback">
+            <div *ngIf="confirmPassword.errors['required']">
+              Es obligatorio rellenar el campo de Confirmar Contraseña.
+            </div>
+            <div *ngIf="confirmPassword.errors['matching']">
+              Las contraseñas no coinciden.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group form-check">
+          <input type="checkbox" lass="form-control" name="acceptTerms" [(ngModel)]="form.acceptTerms"
+            class="form-check-input" required #acceptTerms="ngModel"
+            [ngClass]="{ 'is-invalid': f.submitted && acceptTerms.errors }" />
+          <label for="acceptTerms" class="form-check-label">
+            He leído y aceptado los <a class="enlacePoliticaPrivacidad" href="politicaPrivacidad">Términos y Condiciones.</a>
+          </label>
+          <div *ngIf="f.submitted && acceptTerms.errors" class="invalid-feedback">
+            Es necesario aceptar los Términos y Condiciones.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-primary btn-block">Registrarse</button>
+        </div>
+
+        <div class="alert alert-danger" *ngIf="f.submitted && isSignUpFailed">
+          {{ errorMessage }}
+        </div>
+      </form>
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        Te has registrado con éxito!
+      </div>
+      <a href="/login" class="nav-link">Iniciar sesión</a>
+    </div>
+  </div>
+</div>

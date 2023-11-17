@@ -1,0 +1,211 @@
+<!--**********************************
+          Content body start
+      ***********************************-->
+      <div class="content-body">
+        <div class="container-fluid">
+          <div class="row d-flex justify-content-center">
+            <div class="col-sm-12 mb-4 text-center">
+              <h2 *ngIf="!mostrarVistaCompleta && vistaHistorial === 'month'">
+                <fa-icon class="iconoFlecha" [icon]="icons.arrowLeft" (click)="changeMonth('previous')"
+                  *ngIf="currentMonth !== 0"></fa-icon>
+                <span class="changeMonth">{{ selectedMonth }}</span>
+                <fa-icon class="iconoFlecha" [icon]="icons.arrowRight" (click)="changeMonth('next')"
+                  *ngIf="currentMonth !== allMonths.length - 1"></fa-icon>
+              </h2>
+              <h3 *ngIf="vistaHistorial !== 'completo'">
+                <fa-icon class="iconoFlecha" [icon]="icons.arrowLeft" (click)="changeYear('previous')"></fa-icon>
+                <span class="changeYear">{{ currentYear }}</span>
+                <fa-icon class="iconoFlecha" [icon]="icons.arrowRight" (click)="changeYear('next')"></fa-icon>
+              </h3>
+              <div class="container text-center mt-4" *ngIf="vistaHistorial === 'month'">
+                <button class="btn btn-primary shadow-primary btn-rounded mx-2 my-2"
+                  (click)="cambiarVista('completo')">Mostrar historial completo</button>
+                <button class="btn btn-primary shadow-primary btn-rounded mx-2 my-2" (click)="cambiarVista('year')">Mostrar
+                  historial por año</button>
+              </div>
+              <div class="container text-center mt-4" *ngIf="vistaHistorial === 'year'">
+                <button class="btn btn-primary shadow-primary btn-rounded mx-2 my-2"
+                  (click)="cambiarVista('completo')">Mostrar historial completo</button>
+                <button class="btn btn-primary shadow-primary btn-rounded mx-2 my-2" (click)="cambiarVista('month')">Mostrar
+                  historial por mes</button>
+              </div>
+              <div class="container text-center mt-4" *ngIf="vistaHistorial === 'completo'">
+                <button class="btn btn-primary shadow-primary btn-rounded mx-2 my-2" (click)="cambiarVista('month')">Mostrar
+                  historial por mes</button>
+                <button class="btn btn-primary shadow-primary btn-rounded mx-2 my-2" (click)="cambiarVista('year')">Mostrar
+                  historial por año</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row d-flex justify-content-center">
+            <div class="col-xl-3 col-xxl-3 col-lg-6 col-sm-6">
+              <div class="card card-bd">
+                <div class="bg-success card-border"></div>
+                <div class="card-body box-style card-ingresos">
+                  <div class="media align-items-center">
+                    <div class="media-body me-3">
+                      <h2 class="count num-text text-green font-w700">{{totalIngresos}}</h2>
+                      <span class="fs-14">Ingresos</span>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 576 512" class="svgArrowUp">
+                      <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                      <path
+                        d="M384 160c-17.7 0-32-14.3-32-32s14.3-32 32-32H544c17.7 0 32 14.3 32 32V288c0 17.7-14.3 32-32 32s-32-14.3-32-32V205.3L342.6 374.6c-12.5 12.5-32.8 12.5-45.3 0L192 269.3 54.6 406.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160c12.5-12.5 32.8-12.5 45.3 0L320 306.7 466.7 160H384z" />
+                      </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-xxl-4 col-lg-6 col-sm-6">
+              <div class="card card-bd">
+                <div class="bg-warning card-border"></div>
+                <div class="card-body box-style card-balance" [ngClass]="{'red-background': totalTransaccionesGenerales < 0}">
+                  <div class="media align-items-center">
+                    <div class="media-body me-3">
+                      <h2 class="count num-text text-orange font-w700">{{totalTransaccionesGenerales}}</h2>
+                      <span class="fs-14">Balance general</span>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 640 512" class="svgBalance">
+                      <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                      <path
+                        d="M384 32H512c17.7 0 32 14.3 32 32s-14.3 32-32 32H398.4c-5.2 25.8-22.9 47.1-46.4 57.3V448H512c17.7 0 32 14.3 32 32s-14.3 32-32 32H320 128c-17.7 0-32-14.3-32-32s14.3-32 32-32H288V153.3c-23.5-10.3-41.2-31.6-46.4-57.3H128c-17.7 0-32-14.3-32-32s14.3-32 32-32H256c14.6-19.4 37.8-32 64-32s49.4 12.6 64 32zm55.6 288H584.4L512 195.8 439.6 320zM512 416c-62.9 0-115.2-34-126-78.9c-2.6-11 1-22.3 6.7-32.1l95.2-163.2c5-8.6 14.2-13.8 24.1-13.8s19.1 5.3 24.1 13.8l95.2 163.2c5.7 9.8 9.3 21.1 6.7 32.1C627.2 382 574.9 416 512 416zM126.8 195.8L54.4 320H199.3L126.8 195.8zM.9 337.1c-2.6-11 1-22.3 6.7-32.1l95.2-163.2c5-8.6 14.2-13.8 24.1-13.8s19.1 5.3 24.1 13.8l95.2 163.2c5.7 9.8 9.3 21.1 6.7 32.1C242 382 189.7 416 126.8 416S11.7 382 .9 337.1z" />
+                      </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-xxl-3 col-lg-6 col-sm-6">
+              <div class="card card-bd">
+                <div class="bg-primary card-border"></div>
+                <div class="card-body box-style card-gastos">
+                  <div class="media align-items-center">
+                    <div class="media-body me-3">
+                      <h2 class="count num-text text-red font-w700">{{totalGastos}}</h2>
+                      <span class="fs-14">Gastos</span>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 576 512" class="svgArrowDown">
+                      <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                      <path
+                        d="M384 352c-17.7 0-32 14.3-32 32s14.3 32 32 32H544c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32s-32 14.3-32 32v82.7L342.6 137.4c-12.5-12.5-32.8-12.5-45.3 0L192 242.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0L320 205.3 466.7 352H384z" />
+                      </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <app-modal-add-ingreso *ngIf="mostrarModalAddIngreso" (cerrarModal)="cerrarModalIngreso($event)">
+          </app-modal-add-ingreso>
+          <app-modal-add-gasto *ngIf="mostrarModalAddGasto" (cerrarModal)="cerrarModalGasto($event)"></app-modal-add-gasto>
+
+          <div class="text-center mb-4">
+            <a class="btn btn-addIngreso btn-rounded mx-2 my-2" (click)="abrirModalIngreso()">Añadir Ingresos</a>
+            <a class="btn btn-addGasto btn-rounded mx-2 my-2" (click)="abrirModalGasto()">Añadir Gastos</a>
+          </div>
+
+          <!-- Notificación de eliminado éxito -->
+          <div *ngIf="eliminadoConExito" class="alert-container">
+            <div class="alert alert-danger alert-dismissible fade show custom-alert" role="alert">
+              <strong>Éxito:</strong> Gasto eliminado con éxito.
+            </div>
+          </div>
+
+          <!-- Notificación de editado éxito -->
+          <div *ngIf="editadoConExito" class="alert-container">
+            <div class="alert alert-warning alert-dismissible fade show custom-alert" role="alert">
+              <strong>Éxito:</strong> Gasto editado con éxito.
+            </div>
+          </div>
+
+          <div class="contenedorHistorial">
+            <h3 class="text-center">- Historial -</h3>
+            <div class="row d-flex justify-content-center">
+              <div class="col-xl-10 col-xxl-10">
+                <div class="row">
+                  <div class="col-xl-12">
+                    <div class="card">
+                      <div class="card-body historial">
+                        <div class="item" *ngFor="let transaccion of transacciones">
+                          <div class="registro d-flex"
+                            [ngStyle]="{'background-color': getBackgroundColor(transaccion.tipoMovimiento || ''),'border-color':getBorderColor(transaccion.tipoMovimiento || '')}">
+                            <div>
+                              <span class="valor valorFecha">{{ transaccion.fecha }}</span> | <span
+                                class="valor valorDescripcion">{{ transaccion.descripcion }}</span> | <span
+                                class="valor valorCantidad">{{ transaccion.cantidad }}</span>
+                            </div>
+                            <div>
+                              <fa-icon class="opcionRegistro" [icon]="icons.edit" title="Editar"
+                                (click)="abrirModalEditar(transaccion)"></fa-icon>
+                              |
+                              <fa-icon class="opcionRegistro" [icon]="icons.trash" title="Eliminar"
+                                (click)="abrirModalEliminar(transaccion)"></fa-icon>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--**********************************
+                          Content body end
+                      ***********************************-->
+      <!-- Modal Editar Registro -->
+      <div class="modal d-flex align-items-center justify-content-center" *ngIf="mostrarModalEditar">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content modal-editar">
+            <div class="modal-header">
+              <h5 class="modal-title">Editar</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                (click)="cerrarModalEditar()"></button>
+            </div>
+            <div class="modal-body">
+              <form name="formEditarRegistro" (ngSubmit)="editarRegistro()">
+                <div class="mb-3">
+                  <label for="cantidad" class="col-form-label">Cantidad:</label>
+                  <input type="number" class="form-control" name="cantidad" [(ngModel)]="formEditarRegistro.cantidad">
+                </div>
+                <div class="mb-3">
+                  <label for="descripcion" class="col-form-label">Descripción:</label>
+                  <textarea class="form-control" name="descripcion" [(ngModel)]="formEditarRegistro.descripcion"></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="fecha" class="col-form-label">Fecha:</label>
+                  <input type="date" class="form-control" name="fecha" [(ngModel)]="formEditarRegistro.fecha">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-addGasto" data-bs-dismiss="modal"
+                (click)="cerrarModalEditar()">Cancelar</button>
+              <button type="button" class="btn btn-addIngreso" (click)="editarRegistro()">Editar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal para borrar registro -->
+      <div class="modal d-flex align-items-center justify-content-center" *ngIf="mostrarModalEliminacion">
+        <div class="modal-dialog">
+          <div class="modal-content modal-gasto">
+            <div class="modal-header">
+              <h5 class="modal-title">Confirmar Eliminación</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                (click)="cancelarEliminacion()"></button>
+            </div>
+            <div class="modal-body">
+              <p>¿Estás seguro de que quieres eliminar este registro?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-addGasto" data-bs-dismiss="modal"
+                (click)="cancelarEliminacion()">Cancelar</button>
+              <button type="button" class="btn btn-addIngreso" (click)="confirmarEliminacion()">Eliminar</button>
+            </div>
+          </div>
+        </div>
+      </div>
